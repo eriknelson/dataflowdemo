@@ -1,0 +1,16 @@
+.container {
+  width: 960px;
+  height: 600px;
+  margin: 0 auto;
+  border: solid 1px black;
+  padding: 15px;
+}
+
+.widget {
+  border: solid 1px blue;
+  padding: 20px;
+}
+
+.main-btn {
+  margin-top: 10px;
+}

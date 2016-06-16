@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+  <script src="./bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="./bower_components/ember/ember.js"></script>
+  <script src="./bower_components/ember/ember-template-compiler.js"></script>
+  <script src="./index.js"></script>
+
+  <script type="text/x-handlebars">
+    {{outlet}}
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="index">
+    <div class="container">
+      <h3>IndexController</h3>
+
+      {{#each widgets as |widget index|}}
+        {{my-widget widget=widget index=index}}
+      {{/each}}
+
+      <p>Are all widgets > 5? -> {{areAllAboveFive}}</p>
+      <button class="main-btn" disabled={{isButtonDisabled}}>All 5?</button>
+    </div>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="components/my-widget">
+    <div class="widget">
+      <h5>Index: {{index}}</h5>
+      <p>name: {{widget.name}}</p>
+      <p>count: {{widget.count}}</p>
+      <button {{action 'buttonClicked'}}>Increment</button>
+    </div>
+  </script>
+</body>
+</html>
