@@ -1,8 +1,5 @@
 App = Ember.Application.create();
 
-App.Router.map(function() {
-});
-
 App.IndexRoute = Ember.Route.extend({
   model: function() {
     return ['foo', 'bar', 'baz'];
@@ -19,13 +16,10 @@ App.IndexRoute = Ember.Route.extend({
 });
 
 App.IndexController = Ember.Controller.extend({
-  areAllAboveFive: Ember.computed('widgets.@each.count', function() {
-    // Serves as validation
-    return this.get('widgets').reduce(function(accum, widget){
-      return accum && widget.count > 5;
-    }, true);
+  isValid: Ember.computed('widgets.@each.count', function() {
+    return isValid(this.get('widgets'));
   }),
-  isButtonDisabled: Ember.computed.not('areAllAboveFive')
+  isButtonDisabled: Ember.computed.not('isValid')
 });
 
 App.MyWidgetComponent = Ember.Component.extend({
@@ -35,3 +29,9 @@ App.MyWidgetComponent = Ember.Component.extend({
     }
   }
 });
+
+function isValid(widgets) {
+  return widgets.reduce(function(accum, widget){
+    return accum && widget.count > 5;
+  }, true);
+}
